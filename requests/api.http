@@ -1,6 +1,6 @@
 ### create a user
 
-POST http://127.0.0.1:3000/signup
+POST http://127.0.0.1:3000/api/users
 Content-Type: application/json
 
 {
