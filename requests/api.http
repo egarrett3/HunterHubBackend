@@ -1,0 +1,11 @@
+### create a user
+
+POST http://127.0.0.1:3000/signup
+Content-Type: application/json
+
+{
+    "username":"gerald",
+    "email":"kyle360@gmail.com",
+    "password":"password1"
+}
+
