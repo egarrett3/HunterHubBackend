@@ -5,9 +5,9 @@
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node app.js",
-    "server": "nodemon app.js",
-    "server:debug": "nodemon --inspect app.js"
+    "start": "node app1.js",
+    "dev": "nodemon app1.js",
+    "server:debug": "nodemon --inspect app1.js"
   },
   "author": "Edward Garrett",
   "license": "ISC",
