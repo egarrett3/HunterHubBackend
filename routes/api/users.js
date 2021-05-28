@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const bcrypt = require('bcryptjs');
 const jwt = require("jsonwebtoken");
+const key = require('../../config/keys').key
 
 const User = require('../../models/user');
 
@@ -10,8 +11,8 @@ router.post('/register', (req, res) => {
     User.findOne({ email: req.body.email }).then((user) => {
         if (user) {
             return res
-                .status(404)
-                .json({ email: 'a user with that email address exists already' });
+                    .status(404)
+                    .json({ email: 'a user with that email address exists already' });
         } else {
             const newUser = new User({
                 username: req.body.username,
@@ -44,16 +45,32 @@ router.post('/login',(req,res) => {
               .status(404)
               .json({ email: 'the user does not exist'})
         } else {
-            bcrypt.compare(user.password,req.body.password).then((isMatch) => {
+            console.log(user.password)
+            console.log(req.body.password)
+            bcrypt.compare(req.body.password,user.password).then((isMatch) => {
+                console.log(isMatch)
                 if (isMatch) {
-                    payload = { id: user.id, username: user.username }
-
                     // jwt.sign(payload, secretOrPrivateKey, [options,callback])
 
+                    //payload
+                    const payload = { id: user.id, email: user.email }
+
+                    //options will include expiration 
+                    const exp = { expiresIn: '10h'}
 
                     jwt.sign(
                         payload,
+                        key,
+                        exp,
+                        (err,token) => {
+                            if (err) throw(jwterrfnc())
+                            res.json({
+                                success: 'true',
+                                token: "Bearer " + token
+                            })
+                        }
                     )
+                    function jwterrfnc() { return {error: `problem signing jwt ${err}`} }
 
                 } else {
                     res
