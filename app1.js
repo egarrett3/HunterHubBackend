@@ -1,11 +1,14 @@
 const express = require('express');
 const app = express();
 const mongoose = require('mongoose');
+const bodyParser = require('body-parser');
 
 const db = require('./config/keys').mongoURI
 const users = require('./routes/api/users');
 
-app.use(express.json());
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+// app.use(bodyParser.urlencoded({ extended: false }));
 
 mongoose
     .connect(db, { useNewUrlParser: true, useUnifiedTopology: true })
