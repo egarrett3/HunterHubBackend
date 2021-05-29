@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node app1.js",
-    "dev": "nodemon app1.js",
+    "server": "nodemon app1.js",
     "server:debug": "nodemon --inspect app1.js"
   },
   "author": "Edward Garrett",
