@@ -28,7 +28,9 @@ router.post('/register', (req, res) => {
                         throw err
                     } else {
                         newUser.password = hash;
-                        newUser.save().then((user) => res.json(user));
+                        newUser.save().then((user) => {
+                            return res.json(user)
+                        });
                     }
                 })
             })
@@ -45,10 +47,7 @@ router.post('/login',(req,res) => {
               .status(404)
               .json({ email: 'the user does not exist'})
         } else {
-            console.log(user.password)
-            console.log(req.body.password)
             bcrypt.compare(req.body.password,user.password).then((isMatch) => {
-                console.log(isMatch)
                 if (isMatch) {
                     // jwt.sign(payload, secretOrPrivateKey, [options,callback])
 
