@@ -3,6 +3,7 @@ const router = express.Router();
 const bcrypt = require('bcryptjs');
 const jwt = require("jsonwebtoken");
 const key = require('../../config/keys').key
+const loginValidation = require('../../validations/login')
 
 const User = require('../../models/user');
 
@@ -41,11 +42,20 @@ router.post('/register', (req, res) => {
 
 router.post('/login',(req,res) => {
 
+    debugger
+    const errors = loginValidation(req.body);
+
+    if (errors.size > 0) {
+        return res
+            .status(404)
+            .json(errors)
+    }
+
     User.findOne({ email: req.body.email}).then(user => {
         if (!user) {
             res
               .status(404)
-              .json({ email: 'the user does not exist'})
+              .json({ email: 'this email does not exist'})
         } else {
             bcrypt.compare(req.body.password,user.password).then((isMatch) => {
                 if (isMatch) {
