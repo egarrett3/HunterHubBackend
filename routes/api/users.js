@@ -3,12 +3,29 @@ const router = express.Router();
 const bcrypt = require('bcryptjs');
 const jwt = require("jsonwebtoken");
 const key = require('../../config/keys').key
-const loginValidation = require('../../validations/login')
+const loginValidation = require('../../validations/login');
+const signupValidation = require('../../validations/signup')
 
 const User = require('../../models/user');
 
+// router.get('/validate', (req,res) => {
+//     let passwordStrength = signupValidation(req.body);
+
+//     if (passwordStrength) {
+//         res.json( passwordStrength )
+//     } else {
+//         return res.status(404).json( passwordStrength );
+//     }
+// });
+
 router.post('/register', (req, res) => {
 
+    const errors = signupValidation(req.body);
+
+    if (errors) {
+        return res.status(404).json(errors);
+    }
+    
     User.findOne({ email: req.body.email }).then((user) => {
         if (user) {
             return res
@@ -41,16 +58,13 @@ router.post('/register', (req, res) => {
 });
 
 router.post('/login',(req,res) => {
-
-    debugger
+    
     const errors = loginValidation(req.body);
-
-    if (errors.size > 0) {
-        return res
-            .status(404)
-            .json(errors)
+   
+    if (errors) {
+        return res.status(404).json(errors)
     }
-
+    
     User.findOne({ email: req.body.email}).then(user => {
         if (!user) {
             res
