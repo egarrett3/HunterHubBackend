@@ -1,19 +1,19 @@
 const Validator = require('validator');
 
 module.exports = function loginValidation(form) {
-    let loginErr = new Set();
+    let loginErr = {};
 
     if (Validator.isEmpty(form.email)) {
-        loginErr.add(2)
+        loginErr.email = 'email is empty';
     } else {
         if (!Validator.isEmail(form.email)) {
-            loginErr.add(1)
+            loginErr.email = 'email not valid';
         }
     }
     
     if (Validator.isEmpty(form.password)) {
-        loginErr.add(3)
+        loginErr.password = 'password is empty';
     }
 
-    return loginErr
+    return Object.entries(loginErr).length === 0 ? false : loginErr;
 }
