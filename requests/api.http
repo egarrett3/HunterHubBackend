@@ -1,6 +1,9 @@
+@baseurl = http://127.0.0.1:5000
+
 ### create a user
 
-POST http://127.0.0.1:3000/api/users/register
+POST {{baseurl}}/api/users/register
+Accept: application/json
 Content-Type: application/json
 
 {
@@ -11,11 +14,21 @@ Content-Type: application/json
 
 ### logs in user
 
-POST http://127.0.0.1:3000/api/users/login
+POST {{baseurl}}/api/users/login
+Accept: application/json
 Content-Type: application/json
 
 {
-    "username":"gerald",
-    "email":"kyle360@gmail.com",
-    "password":"password1"
+    "email":"",
+    "password":""
+}
+
+### tests password validation
+
+GET {{baseurl}}/api/users/validate
+Accept: application/json
+Content-Type: application/json
+
+{
+    "password":"4"
 }
