@@ -8,16 +8,6 @@ const signupValidation = require('../../validations/signup')
 
 const User = require('../../models/user');
 
-// router.get('/validate', (req,res) => {
-//     let passwordStrength = signupValidation(req.body);
-
-//     if (passwordStrength) {
-//         res.json( passwordStrength )
-//     } else {
-//         return res.status(404).json( passwordStrength );
-//     }
-// });
-
 router.post('/register', (req, res) => {
 
     const errors = signupValidation(req.body);
@@ -47,6 +37,7 @@ router.post('/register', (req, res) => {
                     } else {
                         newUser.password = hash;
                         newUser.save().then((user) => {
+                            sendToken(user,res)
                             return res.json(user)
                         });
                     }
@@ -73,28 +64,8 @@ router.post('/login',(req,res) => {
         } else {
             bcrypt.compare(req.body.password,user.password).then((isMatch) => {
                 if (isMatch) {
-                    // jwt.sign(payload, secretOrPrivateKey, [options,callback])
-
-                    //payload
-                    const payload = { id: user.id, email: user.email }
-
-                    //options will include expiration 
-                    const exp = { expiresIn: '10h'}
-
-                    jwt.sign(
-                        payload,
-                        key,
-                        exp,
-                        (err,token) => {
-                            if (err) throw(jwterrfnc())
-                            res.json({
-                                success: 'true',
-                                token: "Bearer " + token
-                            })
-                        }
-                    )
-                    function jwterrfnc() { return {error: `problem signing jwt ${err}`} }
-
+                    sendToken(user,res);
+                    res.json({'user': user.username,'email': user.email});
                 } else {
                     res
                       .status(404)
@@ -103,7 +74,25 @@ router.post('/login',(req,res) => {
             })
         }
     })
-
 })
 
+const sendToken = (user,res) => {
+    const payload = { id: user.id, email: user.email, username: user.username };
+
+    //options will include expiration
+    const exp = { expiresIn: 86400 };
+
+    const token = jwt.sign(payload, key, exp);
+
+    // set token in cookie, httpOnly/for server eyes only
+    try {
+        res.cookie("token", token, {
+            expires: new Date(Date.now() + exp),
+            secure: false,
+            httpOnly: true,
+        });
+    } catch (err) {
+        res.status(500).json({'error': 'unable to sign token'})
+    }
+}
 module.exports = router;
