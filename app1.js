@@ -2,10 +2,15 @@ const express = require('express');
 const app = express();
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
+const cookieParser = require('cookie-parser')
+const jwt = require('express-jwt');
 
 const db = require('./config/keys').mongoURI
+const key = require('./config/keys').key;
 const users = require('./routes/api/users');
+const authenticateUser = require('./authController/authenticate_token')
 
+app.use(cookieParser());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 // app.use(bodyParser.urlencoded({ extended: false }));
