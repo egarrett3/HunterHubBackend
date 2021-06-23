@@ -19,8 +19,8 @@ Accept: application/json
 Content-Type: application/json
 
 {
-    "email":"",
-    "password":""
+    "email":"kyle360@gmail.com",
+    "password":"password1"
 }
 
 ### tests password validation
