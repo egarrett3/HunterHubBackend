@@ -95,4 +95,5 @@ const sendToken = (user,res) => {
         res.status(500).json({'error': 'unable to sign token'})
     }
 }
+
 module.exports = router;
