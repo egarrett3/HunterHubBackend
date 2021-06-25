@@ -21,6 +21,7 @@
     "express-jwt": "^6.0.0",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.12.11",
+    "osmosis": "^1.1.10",
     "requests": "^0.3.0",
     "validator": "^13.6.0"
   },
