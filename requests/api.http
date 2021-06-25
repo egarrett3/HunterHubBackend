@@ -32,3 +32,15 @@ Content-Type: application/json
 {
     "password":"4"
 }
+
+### test harvest route
+
+GET {{baseurl}}/api/harveststatistics/fetchdata
+Accept: application/json
+Content-Type: application/json
+
+{
+    "year":"2019",
+    "animal":"elk",
+    "season":"general"
+}
