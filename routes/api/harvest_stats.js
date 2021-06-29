@@ -3,10 +3,11 @@ const router = express.Router();
 const osmosis = require('osmosis');
 const animal = require('../../models/animals')
 
-router.get("/fetchdata", (req, res) => {
-    const year = req.body.year;
-    const animals = req.body.animal;
-    const season = req.body.season;
+router.get("/:season/:animal/:year", (req, res) => {
+    const year = req.params.year;
+    const animals = req.params.animal;
+    const season = req.params.season;
+
     const url = `https://idfg.idaho.gov/ifwis/huntplanner/stats/?season=${season}&game=${animal}&yr=${year}`;
 
     switch(animals) {
@@ -46,12 +47,13 @@ router.get("/fetchdata", (req, res) => {
 
     requestData(url,animalType)
         .then(result => res.json({result}))
+            .catch((err) => res.status(404).json({err}))
 });
 
 function requestData(url,animalType) {
     return new Promise((resolve,reject) => {
         let response = [];
-
+        
         osmosis
           .get(url)
           .find("table#stattable tr:gt(0)")
