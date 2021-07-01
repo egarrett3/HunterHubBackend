@@ -3,7 +3,7 @@
 // client side or within osmosis.set(function(){ HERE })
 
 const animal = {
-    "deer": {
+    "Deer": {
       TakeMethod: "td[1]",
       Unit: "td[2]",
       Harvest: "td[3]",
@@ -15,19 +15,19 @@ const animal = {
       Spiked: "td[9]",
       SixPlusPoints: "td[10]",
     },
-    "lion": {
+    "Lion": {
       Unit: "td[1]",
       Harvest: "td[2]",
       Male: "td[3]",
       Female: "td[4]",
     },
-    "wolf": {
+    "Wolf": {
       Unit: "td[1]",
       Harvest: "td[2]",
       Male: "td[3]",
       Female: "td[4]",
     },
-    "bear": {
+    "Bear": {
       Unit: "td[1]",
       Harvest: "td[2]",
       Boars: "td[3]",
@@ -39,7 +39,7 @@ const animal = {
       Incidental: "td[9]",
       StillStalk: "td[10]",
     },
-    "goat": {
+    "Goat": {
       HuntNumber: "td[1]",
       TakeMethod: "td[2]",
       Area: "td[3]",
@@ -51,7 +51,7 @@ const animal = {
       Nannies: "td[9]",
       SixPlusPoints: "td[10]",
     },
-    "turkey": {
+    "Turkey": {
       Season: "td[1]",
       Unit: "td[2]",
       Harvest: "td[3]",
@@ -60,7 +60,7 @@ const animal = {
       BirdsPerDay: "td[6]",
       DaysPerBird: "td[7]",
     },
-    "pronghorn": {
+    "Pronghorn": {
       TakeMethod: "td[1]",
       Unit: "td[2]",
       Harvest: "td[3]",
@@ -71,7 +71,7 @@ const animal = {
       Hornless: "td[8]",
       AvgHornLengthInch: "td[9]",
     },
-    "sheep": {
+    "Sheep": {
       HunterNumber: "td[1]",
       TakeMethod: "td[2]",
       Area: "td[3]",
@@ -84,7 +84,7 @@ const animal = {
       AvgHornLengthInch: "td[10]",
       AvgHornCircumferenceInch: "td[10]",
     },
-    "elk": {
+    "Elk": {
       TakeMethod: "td[1]",
       Unit: "td[2]",
       Harvest: "td[3]",
@@ -96,7 +96,7 @@ const animal = {
       Spike: "td[9]",
       SixPlusPoints: "td[10]",
     },
-    "moose": {
+    "Moose": {
       HunterNumber: "td[1]",
       TakeMethod: "td[2]",
       Area: "td[3]",

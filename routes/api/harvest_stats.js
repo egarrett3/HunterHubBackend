@@ -11,38 +11,38 @@ router.get("/:season/:animal/:year", (req, res) => {
     const url = `https://idfg.idaho.gov/ifwis/huntplanner/stats/?season=${season}&game=${animal}&yr=${year}`;
 
     switch(animals) {
-        case 'deer':
-            animalType = animal.deer;
+        case 'Deer':
+            animalType = animal.Deer;
             break;
-        case 'elk':
-            animalType = animal.elk;
+        case 'Elk':
+            animalType = animal.Elk;
             break;
-        case 'pronghorn':
-            animalType = animal.pronghorn;
+        case 'Pronghorn':
+            animalType = animal.Pronghorn;
             break;
-        case 'bear':
-            animalType = animal.bear;
+        case 'Bear':
+            animalType = animal.Bear;
             break;
-        case 'lion':
-            animalType = animal.lion;
+        case 'Lion':
+            animalType = animal.Lion;
             break;
-        case 'wolf':
-            animalType = animal.wolf;
+        case 'Wolf':
+            animalType = animal.Wolf;
             break;
-        case 'moose':
-            animalType = animal.moose;
+        case 'Moose':
+            animalType = animal.Moose;
             break;
-        case 'sheep':
-            animalType = animal.sheep;
+        case 'Sheep':
+            animalType = animal.Sheep;
             break;
-        case 'goat':
-            animalType = animal.goat;
+        case 'Goat':
+            animalType = animal.Goat;
             break;
-        case 'turkey':
-            animalType = animal.turkey;
+        case 'Turkey':
+            animalType = animal.Turkey;
             break;
         default:
-            animalType = animal.deer;
+            animalType = animal.Deer;
     }
 
     requestData(url,animalType)
