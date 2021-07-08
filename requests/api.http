@@ -1,4 +1,5 @@
 @baseurl = http://127.0.0.1:5000
+@foreignSite = https://idfg.idaho.gov/ifwis/huntplanner/stats/
 
 ### create a user
 
@@ -44,3 +45,7 @@ Content-Type: application/json
     "animal":"elk",
     "season":"general"
 }
+
+### test defualt harvsetStats response
+
+GET {{foreignSite}}
