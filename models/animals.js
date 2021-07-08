@@ -72,7 +72,7 @@ const animal = {
       AvgHornLengthInch: "td[9]",
     },
     "Sheep": {
-      HunterNumber: "td[1]",
+      HuntNumber: "td[1]",
       TakeMethod: "td[2]",
       Area: "td[3]",
       Hunter: "td[4]",
@@ -97,7 +97,7 @@ const animal = {
       SixPlusPoints: "td[10]",
     },
     "Moose": {
-      HunterNumber: "td[1]",
+      HuntNumber: "td[1]",
       TakeMethod: "td[2]",
       Area: "td[3]",
       Hunters: "td[4]",
@@ -110,4 +110,6 @@ const animal = {
     }
 }
 
-module.exports = animal;
+module.exports = {
+  animal,
+}
