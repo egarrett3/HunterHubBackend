@@ -9,6 +9,7 @@ const db = require('./config/keys').mongoURI
 const key = require('./config/keys').key;
 const users = require('./routes/api/users');
 const fetchData = require('./routes/api/harvest_stats');
+const fetchOptions = require('./routes/api/harvest_options');
 const authenticateUser = require('./authController/authenticate_token')
 
 app.use(cookieParser());
@@ -24,6 +25,7 @@ mongoose
 app.get('/',(req,res) => res.send('hello, we meet again'))
 app.use('/api/users', users);
 app.use('/api/harveststatistics', fetchData);
+app.use('/api/harvestoptions', fetchOptions);
  
 const port = process.env.PORT || 5000;
 app.listen(port, () => console.log(`listening on port ${port}`));
