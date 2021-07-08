@@ -1,14 +1,15 @@
 const express = require('express');
 const router = express.Router();
 const osmosis = require('osmosis');
-const animal = require('../../models/animals')
+const baseUrl = require('../../config/keys').harvestURL
+const animal = require('../../models/animals').animal
 
 router.get("/:season/:animal/:year", (req, res) => {
     const year = req.params.year;
     const animals = req.params.animal;
     const season = req.params.season;
 
-    const url = `https://idfg.idaho.gov/ifwis/huntplanner/stats/?season=${season}&game=${animal}&yr=${year}`;
+    const url = `${baseUrl}?season=${season}&game=${animals}&yr=${year}`;
 
     switch(animals) {
         case 'Deer':
@@ -45,12 +46,14 @@ router.get("/:season/:animal/:year", (req, res) => {
             animalType = animal.Deer;
     }
 
-    requestData(url,animalType)
+    scrapeData(url,animalType)
         .then(result => res.json({result}))
             .catch((err) => res.status(404).json({err}))
+
 });
 
-function requestData(url,animalType) {
+
+function scrapeData(url,animalType) {
     return new Promise((resolve,reject) => {
         let response = [];
         
