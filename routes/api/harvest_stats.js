@@ -13,16 +13,24 @@ router.get("/:season/:animal/:year", (req, res) => {
 
     switch(animals) {
         case 'Deer':
-            animalType = animal.Deer;
+            season === "controlled"
+              ? (animalType = animal.ControlledDeer)
+              : (animalType = animal.GeneralDeer);
             break;
         case 'Elk':
-            animalType = animal.Elk;
+            season === "controlled"
+              ? (animalType = animal.ControlledElk)
+              : (animalType = animal.GeneralElk);
             break;
         case 'Pronghorn':
-            animalType = animal.Pronghorn;
+            season === "controlled"
+              ? (animalType = animal.ControlledPronghorn)
+              : (animalType = animal.GeneralPronghorn);
             break;
         case 'Bear':
-            animalType = animal.Bear;
+            season === "controlled"
+              ? (animalType = animal.ControlledBear)
+              : (animalType = animal.GeneralBear);
             break;
         case 'Lion':
             animalType = animal.Lion;
@@ -40,7 +48,9 @@ router.get("/:season/:animal/:year", (req, res) => {
             animalType = animal.Goat;
             break;
         case 'Turkey':
-            animalType = animal.Turkey;
+            season === "controlled"
+              ? (animalType = animal.ControlledTurkey)
+              : (animalType = animal.GeneralTurkey);
             break;
         default:
             animalType = animal.Deer;
@@ -49,9 +59,7 @@ router.get("/:season/:animal/:year", (req, res) => {
     scrapeData(url,animalType)
         .then(result => res.json({result}))
             .catch((err) => res.status(404).json({err}))
-
 });
-
 
 function scrapeData(url,animalType) {
     return new Promise((resolve,reject) => {
