@@ -114,7 +114,7 @@ const animal = {
     'AvgHornLengthInch': "td[9]",
   },
   ControlledPronghorn: {
-    'Hunt#': "td[1]",
+    'HuntNumber': "td[1]",
     'TakeMethod': "td[2]",
     'Area': "td[3]",
     'Hunter': "td[5]",

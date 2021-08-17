@@ -24,6 +24,7 @@ mongoose
     .catch((err) => console.log(err))
 
 app.get('/',(req,res) => res.send('hello, we meet again'))
+app.get('/api/checkToken', authenticateUser)
 app.use('/api/users', users);
 app.use('/api/harveststatistics', fetchData);
 app.use('/api/harvestoptions', fetchOptions);
