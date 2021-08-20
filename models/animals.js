@@ -12,8 +12,9 @@ const animal = {
     'Days': "td[6]",
     'Antlered': "td[7]",
     'Anterless': "td[8]",
-    'Spiked': "td[9]",
-    'SixPlusPoints': "td[10]",
+    '4+Points': "td[9]",
+    '5+Points': "td[10]",
+    'Whitetail': "td[11]",
   },
   ControlledDeer: {
     'HuntNumber': "td[1]",
